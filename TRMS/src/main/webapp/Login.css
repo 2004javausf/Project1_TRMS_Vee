@@ -1,0 +1,141 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background: cover;
+	background-position: center;
+	font-family: sans-serif;
+}
+.heading
+{
+	margin-top: 10%;
+}
+.login
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 350px;
+	height: 400px;
+	padding: 40px 30px;
+	box-sizing: border-box;
+	background: rgba(0, 0, 0, 0.6);
+}
+.avatar
+{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	top: -50px;
+	left: calc(50%-50px);
+	
+}
+h2
+{
+	margin: 0;
+	padding: 0 0 20px;
+	color: #000000;
+	text-align: center;
+}
+h3
+{
+	color: #efed40;
+}
+h1
+{
+	margin: 0;
+	padding: 0 0 20px;
+	color: #000000;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 750;
+}
+.login p
+{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: #000000;
+}
+.login input
+{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.login input[type = "text"],
+.login input[type = "password"]
+{
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+}
+::placeholder
+{
+	color: white;
+}
+.login input[type= "submit"]
+{
+	border: none;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size:18px;
+	background: #086f97;
+	cursor: pointer;
+	border-radius: 20px;
+}
+.login input[type = "submit"]:hover
+{
+	background: #baca28;
+	color: #262626
+}
+.login a 
+{
+	text-decoration: none;
+	font-size: 15px;
+	color: #fff;
+}
+#forgotPass:hover,#register:hover
+{
+	color: #baca28;
+}
+#a-createUser {
+	right: 10%;
+	position: absolute;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
