@@ -9,11 +9,10 @@ public class User implements Serializable{
 	private long empID;
 	private String fName;
 	private String lName;
-	private String email;
 	private String uName;
 	private String uPassword;
-	private String empTitle;
-	private String empDept;
+	private long empTitle;
+	private long empDept;
 	
 	
 	public User() {
@@ -21,13 +20,11 @@ public class User implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(long empID, String fName, String lName, String email, String uName, String uPassword, String empTitle,
-			String empDept) {
+	public User(long empID, String fName, String lName, String uName, String uPassword, long empTitle, long empDept) {
 		super();
 		this.empID = empID;
 		this.fName = fName;
 		this.lName = lName;
-		this.email = email;
 		this.uName = uName;
 		this.uPassword = uPassword;
 		this.empTitle = empTitle;
@@ -70,22 +67,17 @@ public class User implements Serializable{
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getEmpTitle() {
+	
+	public long getEmpTitle() {
 		return empTitle;
 	}
-	public void setEmpTitle(String empTitle) {
+	public void setEmpTitle(long empTitle) {
 		this.empTitle = empTitle;
 	}
-	public String getEmpDept() {
+	public long getEmpDept() {
 		return empDept;
 	}
-	public void setEmpDept(String empDept) {
+	public void setEmpDept(long empDept) {
 		this.empDept = empDept;
 	}
 
@@ -94,7 +86,7 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [empID=" + empID + ", fName=" + fName + ", lName=" + lName + ", email=" + email + ", empTitle="
+		return "User [empID=" + empID + ", fName=" + fName + ", lName=" + lName + ", empTitle="
 				+ empTitle + ", empDept=" + empDept + "]";
 	}
 	

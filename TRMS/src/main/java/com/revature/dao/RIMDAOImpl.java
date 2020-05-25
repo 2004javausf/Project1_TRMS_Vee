@@ -90,7 +90,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 				"JOIN EVENT " + 
 				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID");
 		while(rs.next()) {
-						
+			System.out.println(rs.getDate(4));			
 			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
 			vrList.add(vr);
 			System.out.println(vr);

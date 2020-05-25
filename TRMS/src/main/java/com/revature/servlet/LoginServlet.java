@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 		LoginDAOImpl ldi = new LoginDAOImpl();
 		User user = new User();
 		try {
-			user = ldi.getLogInUser(uName);
+			user = ldi.getLogInUser(uName,password);
 			System.out.println(user);
 			String name = user.getfName() + " " + user.getlName();
 			if(password.equals(user.getuPassword())) {

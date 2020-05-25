@@ -25,20 +25,39 @@ function getER(){
 }
 
 function loadER(er){
-    var table = document.getElementById("viewAllRim");      
-        
-    var tableBody = document.createElement('TBODY');
-    table.appendChild(tableBody);
-      
-    for (var i=0; i<er.length;i++){
-       var tr = document.createElement('TR');
-       tableBody.appendChild(tr);
-       
-       for(var j=0;j<10;j++){
-           var td = document.createElement('TD');
-           td.appendChild(er[i][j]);
-           tr.appendChild(td);
-       }
+    var col = [];
+    for (var c = 0; c < er.length; c++) {
+        for (var key in er[c]) {
+            if (col.indexOf(key) === -1) {
+                col.push(key);
+            }
+        }
     }
-    myTableDiv.appendChild(table);
+    console.log(col);
+    var table = document.createElement("table");
+
+        // Create table header row using the extracted headers above.
+        var tr = table.insertRow(-1);                   // table row.
+
+        for (var h = 0; h < col.length; h++) {
+            var th = document.createElement("th");      // table header.
+            th.innerHTML = col[h];
+            tr.appendChild(th);
+        }
+
+        // add json data to the table as rows.
+        for (var i = 0; i < er.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = er[i][col[j]];
+            }
+        }
+
+        // Now, add the newly created table with json data, to a container.
+        var divShowData = document.getElementById('showData');
+        divShowData.innerHTML = "";
+        divShowData.appendChild(table);
 }
