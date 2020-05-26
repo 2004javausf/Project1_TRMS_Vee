@@ -12,6 +12,7 @@ import java.util.List;
 import com.revature.beans.EventType;
 import com.revature.beans.GradeFormat;
 import com.revature.beans.Reimbursement;
+import com.revature.beans.User;
 import com.revature.beans.VideoGame;
 import com.revature.beans.ViewRim;
 import com.revature.util.ConnFactory;
@@ -74,30 +75,90 @@ public static ConnFactory banana = ConnFactory.getInstance();
 
 	public List<ViewRim> getViewAllRim() throws SQLException{
 		ViewRim vr = null;
-		long eID,empID;
-		String empName="",eType="",eLoc="",eDesc="",eGrade="";
-		Date eDate=null;;
+		
+//		long eID,empID;
+//		String empName="",eType="",eLoc="",eDesc="",eGrade="";
+//		Date eDate=null;
 		
 		List<ViewRim> vrList = new ArrayList<ViewRim>();
 		Connection conn = banana.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs=stmt.executeQuery("SELECT EMPLOYEE.EMPLOYEE_FIRSTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
-				"EVENT.EVENT_TYPE,EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
+		ResultSet rs=stmt.executeQuery("SELECT EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
+				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
 				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
 				"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY FROM REIMBURSEMENT " + 
 				"JOIN EMPLOYEE " + 
 				"ON REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID=EMPLOYEE.EMPLOYEE_ID " + 
 				"JOIN EVENT " + 
-				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID");
+				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
+				"JOIN EVENT_TYPE " + 
+				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " + 
+				"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
 		while(rs.next()) {
 			System.out.println(rs.getDate(4));			
-			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
+			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
 			vrList.add(vr);
 			System.out.println(vr);
 		}
 		
 		return vrList;
 		
+	}
+	
+	public List<ViewRim> getMyRims(long empID) throws SQLException{
+		ViewRim vr = null;
+		
+//		long eID,empID;
+//		String empName="",eType="",eLoc="",eDesc="",eGrade="";
+//		Date eDate=null;
+		
+		List<ViewRim> vrList = new ArrayList<ViewRim>();
+		Connection conn = banana.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs=stmt.executeQuery("SELECT EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
+				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
+				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
+				"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY FROM REIMBURSEMENT " + 
+				"JOIN EMPLOYEE " + 
+				"ON REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID=EMPLOYEE.EMPLOYEE_ID " + 
+				"JOIN EVENT " + 
+				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
+				"JOIN EVENT_TYPE " + 
+				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " +
+				"WHERE REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID= "+empID +
+				"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
+		while(rs.next()) {
+			System.out.println(rs.getDate(4));			
+			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
+			vrList.add(vr);
+			System.out.println(vr);
+		}
+		
+		return vrList;
+		
+	}
+	
+	public User getLogInUser(String uName, String uPassword) throws SQLException {
+		User user=null;
+		Connection conn = banana.getConnection();
+		Statement stmt=conn.createStatement();
+		String sql = ("SELECT * FROM EMPLOYEE WHERE EMPLOYEE.EMPLOYEE_USERNAME= "+ uName);
+		
+		System.out.println(sql);
+		
+		ResultSet rs=stmt.executeQuery(sql);
+		
+		System.out.println(rs);
+		
+		while(rs.next()) {
+			
+			user=new User(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(5),rs.getString(6),rs.getLong(7),rs.getLong(8));
+			
+		}
+		
+		System.out.println(user);
+		
+		return user;
 	}
 	
 }

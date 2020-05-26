@@ -9,6 +9,7 @@ public class ViewRim {
     private Date etDate;  
     private String etLocation;        
     private String etDesc;
+    private String eGrade;
     private String rimJustify; 
 	private int daysMissed; 
     private String rimSTATUS;    
@@ -19,7 +20,7 @@ public class ViewRim {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ViewRim(String empName, double rimCOST, String etName, Date etDate, String etLocation, String etDesc,
+	public ViewRim(String empName, double rimCOST, String etName, Date etDate, String etLocation, String etDesc, String eGrade,
 			String rimJustify, int daysMissed, String rimSTATUS, String rimStatusBy) {
 		super();
 		this.empName = empName;
@@ -28,6 +29,7 @@ public class ViewRim {
 		this.etDate = etDate;
 		this.etLocation = etLocation;
 		this.etDesc = etDesc;
+		this.eGrade = eGrade;
 		this.rimJustify = rimJustify;
 		this.daysMissed = daysMissed;
 		this.rimSTATUS = rimSTATUS;
@@ -80,6 +82,14 @@ public class ViewRim {
 
 	public void setEtDesc(String etDesc) {
 		this.etDesc = etDesc;
+	}
+	
+	public String geteGrade() {
+		return eGrade;
+	}
+
+	public void seteGrade(String eGrade) {
+		this.eGrade = eGrade;
 	}
 
 	public String getRimJustify() {

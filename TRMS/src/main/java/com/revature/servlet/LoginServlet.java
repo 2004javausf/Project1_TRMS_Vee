@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Login;
 import com.revature.beans.User;
 import com.revature.dao.LoginDAOImpl;
+import com.revature.dao.RIMDAOImpl;
 
 
 public class LoginServlet extends HttpServlet {
@@ -30,10 +31,10 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("Roll Tide in doPost Login");
 		System.out.println(uName + " " + password);
 		
-		LoginDAOImpl ldi = new LoginDAOImpl();
+		RIMDAOImpl rdi = new RIMDAOImpl();
 		User user = new User();
 		try {
-			user = ldi.getLogInUser(uName,password);
+			user = rdi.getLogInUser(uName,password);
 			System.out.println(user);
 			String name = user.getfName() + " " + user.getlName();
 			if(password.equals(user.getuPassword())) {

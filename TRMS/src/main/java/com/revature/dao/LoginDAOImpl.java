@@ -18,8 +18,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		User user=null;
 		Connection conn = banana.getConnection();
 		Statement stmt=conn.createStatement();
-		String sql = ("SELECT * FROM EMPLOYEE " + 
-				"WHERE EMPLOYEE_USERNAME="+uName+" AND EMPLOYEE_PASSWORD="+ uPassword);
+		String sql = ("SELECT * FROM EMPLOYEE WHERE EMPLOYEE_USERNAME="+uName+" AND EMPLOYEE_PASSWORD="+ uPassword);
 		System.out.println(sql);
 		ResultSet rs=stmt.executeQuery(sql);
 		
