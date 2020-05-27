@@ -11,8 +11,8 @@ public class User implements Serializable{
 	private String lName;
 	private String uName;
 	private String uPassword;
-	private long empTitle;
-	private long empDept;
+	private String empTitle;
+	private String empDept;
 	
 	
 	public User() {
@@ -20,7 +20,7 @@ public class User implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(long empID, String fName, String lName, String uName, String uPassword, long empTitle, long empDept) {
+	public User(long empID, String fName, String lName, String uName, String uPassword, String empTitle, String empDept) {
 		super();
 		this.empID = empID;
 		this.fName = fName;
@@ -67,17 +67,16 @@ public class User implements Serializable{
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
-	
-	public long getEmpTitle() {
+	public String getEmpTitle() {
 		return empTitle;
 	}
-	public void setEmpTitle(long empTitle) {
+	public void setEmpTitle(String empTitle) {
 		this.empTitle = empTitle;
 	}
-	public long getEmpDept() {
+	public String getEmpDept() {
 		return empDept;
 	}
-	public void setEmpDept(long empDept) {
+	public void setEmpDept(String empDept) {
 		this.empDept = empDept;
 	}
 

@@ -138,11 +138,17 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		
 	}
 	
-	public User getLogInUser(String uName, String uPassword) throws SQLException {
+	public List<User> getLogInUser() throws SQLException {
+		List<User> uList=new ArrayList<User>();
 		User user=null;
 		Connection conn = banana.getConnection();
 		Statement stmt=conn.createStatement();
-		String sql = ("SELECT * FROM EMPLOYEE WHERE EMPLOYEE.EMPLOYEE_USERNAME= "+ uName);
+		String sql = ("SELECT EMPLOYEE.EMPLOYEE_ID,EMPLOYEE.EMPLOYEE_FIRSTNAME,EMPLOYEE.EMPLOYEE_LASTNAME,EMPLOYEE.EMPLOYEE_EMAIL,EMPLOYEE.EMPLOYEE_USERNAME,EMPLOYEE.EMPLOYEE_PASSWORD," + 
+				"EMPLOYEE_TITLE.EMPLOYEE_TITLE_NAME,DEPARTMENT.DEPARTMENT_NAME FROM EMPLOYEE " + 
+				"JOIN EMPLOYEE_TITLE " + 
+				"ON EMPLOYEE.EMPLOYEE_TITLE = EMPLOYEE_TITLE.EMPLOYEE_TITLE_ID " + 
+				"JOIN DEPARTMENT " + 
+				"ON EMPLOYEE.EMPLOYEE_DEPARTMENT=DEPARTMENT.DEPARTMENT_ID");
 		
 		System.out.println(sql);
 		
@@ -152,13 +158,13 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		
 		while(rs.next()) {
 			
-			user=new User(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(5),rs.getString(6),rs.getLong(7),rs.getLong(8));
-			
+			user=new User(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
+			uList.add(user);
 		}
 		
 		System.out.println(user);
 		
-		return user;
+		return uList;
 	}
 	
 }

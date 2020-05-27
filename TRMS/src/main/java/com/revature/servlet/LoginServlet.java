@@ -3,6 +3,8 @@ package com.revature.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Login;
 import com.revature.beans.User;
-import com.revature.dao.LoginDAOImpl;
 import com.revature.dao.RIMDAOImpl;
 
 
@@ -23,8 +24,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) 
 			throws ServletException,IOException {
 		response.setContentType("text/html");
-		PrintWriter out=response.getWriter();
-		request.getRequestDispatcher("home.html").include(request, response);
+		PrintWriter pw=response.getWriter();
+		
 		
 		String uName=request.getParameter("uName");
 		String password=request.getParameter("uPassword");
@@ -32,17 +33,28 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(uName + " " + password);
 		
 		RIMDAOImpl rdi = new RIMDAOImpl();
+		List<User> uList=new ArrayList<User>();
 		User user = new User();
+		boolean l = false;
+		
 		try {
-			user = rdi.getLogInUser(uName,password);
+			uList = rdi.getLogInUser();
+			for(int i=0; i<uList.size();i++) {
+				if((uList.get(i).getuName().equalsIgnoreCase(uName)) && (uList.get(i).getuPassword().equals(password))) {
+					user=uList.get(i);
+					l=true;
+				}
+				
+			}
 			System.out.println(user);
 			String name = user.getfName() + " " + user.getlName();
-			if(password.equals(user.getuPassword())) {
-				out.print("Welcome, "+name);
+			if(l==true) {
+				//pw.print("Welcome, "+name);
 				HttpSession session=request.getSession();
 				session.setAttribute("name",name);
+				request.getRequestDispatcher("home.html").include(request, response);
 			}else {
-				out.print("Sorry, username or password invalid!!!");
+				pw.print("Sorry, username or password invalid!!!");
 				request.getRequestDispatcher("index.html").include(request, response);
 			}
 		
@@ -50,6 +62,6 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		out.close();
+		pw.close();
 	}
 }
