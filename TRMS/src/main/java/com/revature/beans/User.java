@@ -80,14 +80,16 @@ public class User implements Serializable{
 		this.empDept = empDept;
 	}
 
+	@Override
+	public String toString() {
+		return "User [empID=" + empID + ", fName=" + fName + ", lName=" + lName + ", uName=" + uName + ", uPassword="
+				+ uPassword + ", empTitle=" + empTitle + ", empDept=" + empDept + "]";
+	}
+
 	
 
 
-	@Override
-	public String toString() {
-		return "User [empID=" + empID + ", fName=" + fName + ", lName=" + lName + ", empTitle="
-				+ empTitle + ", empDept=" + empDept + "]";
-	}
+	
 	
 	
 }

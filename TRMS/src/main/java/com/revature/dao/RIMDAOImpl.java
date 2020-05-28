@@ -162,8 +162,6 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			uList.add(user);
 		}
 		
-		System.out.println(user);
-		
 		return uList;
 	}
 	

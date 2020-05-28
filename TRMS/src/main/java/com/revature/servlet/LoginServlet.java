@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Login;
 import com.revature.beans.User;
@@ -20,6 +21,32 @@ import com.revature.dao.RIMDAOImpl;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("in doGet of LoginServlet");
+		ObjectMapper mapper = new ObjectMapper();
+		RIMDAOImpl rdi = new RIMDAOImpl();
+	//	String uName = mapper.readValue(request.getParameter("eid"),String.class);
+		HttpSession session = request.getSession();
+		PrintWriter pw = response.getWriter();
+		//List<User> uList=new ArrayList<User>();
+		User user = new User();
+		String etJSON;
+		try {
+			
+			user = (User) session.getAttribute("user");
+			
+			etJSON=mapper.writeValueAsString(user);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			pw.print(etJSON);
+			
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		pw.flush();
+	}
 
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) 
 			throws ServletException,IOException {
@@ -49,10 +76,17 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(user);
 			String name = user.getfName() + " " + user.getlName();
 			if(l==true) {
-				//pw.print("Welcome, "+name);
+				pw.print("Welcome, "+name);
 				HttpSession session=request.getSession();
-				session.setAttribute("name",name);
-				request.getRequestDispatcher("home.html").include(request, response);
+	            session.setAttribute("user",user); 
+				
+				if(user.getEmpTitle().equalsIgnoreCase("Associate")) {
+					request.getRequestDispatcher("home.html").forward(request, response);
+				} 
+				else {
+					request.getRequestDispatcher("home.html").include(request, response);	
+				}
+				
 			}else {
 				pw.print("Sorry, username or password invalid!!!");
 				request.getRequestDispatcher("index.html").include(request, response);
