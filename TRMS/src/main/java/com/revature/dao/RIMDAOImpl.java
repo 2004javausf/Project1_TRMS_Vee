@@ -1,11 +1,13 @@
 package com.revature.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,16 +35,26 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		return vg;
 	}
 	
-	//insert row
-	public void insertVG(VideoGame vg) throws SQLException {
+	//insert reimbursement
+	public void insertRIM(Reimbursement rim) throws SQLException {
 		Connection conn = banana.getConnection();
-		String sql ="INSERT INTO VIDEOGAME VALUES(?,?,?)";
-		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, vg.getVgID());
-		ps.setString(2, vg.getVgName());
-		ps.setInt(3, vg.getVgMetaScore());
 		
-		ps.executeUpdate();
+		String sql = "{ call APPLY_RIM(?,?,?,?,?,?,?,?,?,?)";
+		
+		CallableStatement call = conn.prepareCall(sql);
+		
+		call.setLong(1, rim.geteID());
+		call.setDouble(2, rim.gettFees());
+		call.setInt(3,rim.geteType());
+		call.setDate(4,rim.geteDate());
+		call.setString(5, rim.getLocation());
+		call.setString(6, rim.getDesc());
+		call.setInt(7,rim.getgFormat());
+		call.setString(8,rim.getJustifi());
+		call.setInt(9, rim.getMDays());
+		call.setDouble(10, rim.getRprojected());
+		
+		call.execute();
 	}
 	
 	//get all Event Type
@@ -59,7 +71,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		return etList;
 	}
 	
-	//get all Event Type
+	//get all Grade Format
 	public  List<GradeFormat> getGF() throws SQLException {
 		GradeFormat gf = null;
 		List<GradeFormat> gfList = new ArrayList<GradeFormat>();
@@ -72,18 +84,16 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		}
 		return gfList;
 	}
-
+	
+	//get all Reimbursement to view
 	public List<ViewRim> getViewAllRim() throws SQLException{
 		ViewRim vr = null;
-		
-//		long eID,empID;
-//		String empName="",eType="",eLoc="",eDesc="",eGrade="";
-//		Date eDate=null;
+	
 		
 		List<ViewRim> vrList = new ArrayList<ViewRim>();
 		Connection conn = banana.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs=stmt.executeQuery("SELECT EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
+		ResultSet rs=stmt.executeQuery("SELECT REIMBURSEMENT.REIMBURSEMENT_ID,EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
 				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
 				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
 				"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY FROM REIMBURSEMENT " + 
@@ -94,9 +104,8 @@ public static ConnFactory banana = ConnFactory.getInstance();
 				"JOIN EVENT_TYPE " + 
 				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " + 
 				"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
-		while(rs.next()) {
-			System.out.println(rs.getDate(4));			
-			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
+		while(rs.next()) {		
+			vr=new ViewRim(rs.getLong(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getString(12));
 			vrList.add(vr);
 			System.out.println(vr);
 		}
@@ -105,17 +114,15 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		
 	}
 	
+	//get all Reimbursements of specific employee to view
 	public List<ViewRim> getMyRims(long empID) throws SQLException{
 		ViewRim vr = null;
-		
-//		long eID,empID;
-//		String empName="",eType="",eLoc="",eDesc="",eGrade="";
-//		Date eDate=null;
+
 		
 		List<ViewRim> vrList = new ArrayList<ViewRim>();
 		Connection conn = banana.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs=stmt.executeQuery("SELECT EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
+		ResultSet rs=stmt.executeQuery("SELECT REIMBURSEMENT.REIMBURSEMENT_ID,EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
 				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
 				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
 				"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY FROM REIMBURSEMENT " + 
@@ -127,9 +134,8 @@ public static ConnFactory banana = ConnFactory.getInstance();
 				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " +
 				"WHERE REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID= "+empID +
 				"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
-		while(rs.next()) {
-			System.out.println(rs.getDate(4));			
-			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
+		while(rs.next()) {		
+			vr=new ViewRim(rs.getLong(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getString(12));
 			vrList.add(vr);
 			System.out.println(vr);
 		}
@@ -138,6 +144,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		
 	}
 	
+	//get users info to verify login
 	public List<User> getLogInUser() throws SQLException {
 		List<User> uList=new ArrayList<User>();
 		User user=null;

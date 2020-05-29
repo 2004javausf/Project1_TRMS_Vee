@@ -8,13 +8,14 @@
 	<div>
 		<h1> TUITION REIMBURSEMENT REQUEST FORM</h1>
 		<div>
-            <form enctype="application/json" method="POST" id="requestForm">
+            <form enctype="application/json" method="POST" id="requestForm" action="home.html">
     
-                First Name : <input type="text" id="fName" name="fName" onkeyup="this.value = this.value.toUpperCase();">
+                <input type="hidden" id="eID" name="eID">
+                First Name : <input type="text" id="fName" name="fName" readonly>
                 <br><br>
-                Last Name : <input type="text" id="lName" name="lName" onkeyup="this.value = this.value.toUpperCase();">
+                Last Name : <input type="text" id="lName" name="lName" readonly>
                 <br><br>
-                Cost : <input type="text" name="tFees" id="tFees" placeholder="Tuition Fees Amount">
+                Cost : <input type="text" name="tFees" id="tFees" placeholder="Reimbursement Amount">
                 <br><br>
                 Type of Event : <select name="eType" id="eType">
                     <option value=0>SELECT</option>
@@ -39,11 +40,11 @@
                                         id="justifi"
                                         value="" >
                 <br><br>
-                Missed Work Time : <input type="text" name="wTime">
+                Missed Work Days : <input type="text" name="mDays">
                 <br><br>
                 Projected Reimbursement : <input type="text" id="rProjected" name="rProjected" readonly>
                 <br><br>
-                <input type="submit" value="Submit Me" id="rFormSubmit">
+                <input type="submit" value="Apply Reimbursement" id="rFormSubmit">
             </form>
         </div>
       

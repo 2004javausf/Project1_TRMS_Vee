@@ -69,4 +69,14 @@
     <servlet-name>ViewMyRimServlet</servlet-name>
     <url-pattern>/viewmyrim</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApplyRimServlet</display-name>
+    <servlet-name>ApplyRimServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ApplyRimServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApplyRimServlet</servlet-name>
+    <url-pattern>/applyrim</url-pattern>
+  </servlet-mapping>
 </web-app>

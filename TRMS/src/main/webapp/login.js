@@ -1,11 +1,7 @@
 var emp;
-
+var localStorage;
 window.onload=function(){
-    console.log("in load");
-    var user = '<%= session.getAttribute("user") %>';
-	console.log(user);
-	var session = '<%= Session["user"] %>';
-	console.log(session);
+    
 	this.getLogin();
 }
 
@@ -19,7 +15,6 @@ function getLogin(){
         if(xhr.readyState==4 && xhr.status==200){
             console.log(xhr.responseText);
             emp=JSON.parse(xhr.responseText);
-            console.log(emp);
             loadLogin(emp);
         }
     }
@@ -29,20 +24,26 @@ function getLogin(){
 }
 
 function loadLogin(emp){
-	
-	var emp = emp;
+    var name = emp.fName + " " + emp.lName;
+    localStorage.setItem("user", name);
+    localStorage.setItem("eID",emp.empID);
+    localStorage.setItem("fName",emp.fName);
+    localStorage.setItem("lName",emp.lName);
+    localStorage.setItem("title",emp.empTitle);
+    localStorage.setItem("dept",emp.empDept);
+    //localStorage.setItem("email",emp.email);
+    console.log(localStorage.getItem("title"));
 	console.log(emp);
-	var user = '<%= session.getAttribute("user") %>';
-	console.log(user);
-
-//    document.getElementById("eID").innerHTML=emp.empID;
-//    document.getElementById("fname").innerHTML=emp.fName;
-//    document.getElementById("lname").innerHTML=emp.lName;
-//    document.getElementById("uname").innerHTML=emp.uname;
-//    document.getElementById("upass").innerHTML=emp.uPassword;
-//    document.getElementById("email").innerHTML=emp.email;
-//    document.getElementById("title").innerHTML=emp.title;
-//    document.getElementById("dept").innerHTML=emp.dept;
+	
+    document.getElementById("welcome").innerHTML=("Welcome "+name);
+    document.getElementById("eID").innerHTML=emp.empID;
+    document.getElementById("fname").innerHTML=emp.fName;
+    document.getElementById("lname").innerHTML=emp.lName;
+    document.getElementById("uname").innerHTML=emp.uName;
+    document.getElementById("upass").innerHTML=emp.uPassword;
+    //document.getElementById("email").innerHTML=emp.email;
+    document.getElementById("title").innerHTML=emp.empTitle;
+    document.getElementById("dept").innerHTML=emp.empDept;
 
 }
 

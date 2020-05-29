@@ -14,7 +14,6 @@ function getER(){
     xhr.onreadystatechange=function(){
         console.log("in ORSC"+xhr.readyState);
         if(xhr.readyState==4 && xhr.status==200){
-            console.log(xhr.responseText);
             er=JSON.parse(xhr.responseText);
             console.log(er);
             loadER(er);
@@ -49,10 +48,19 @@ function loadER(er){
         for (var i = 0; i < er.length; i++) {
 
             tr = table.insertRow(-1);
-
+            
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
+                console.log(er[i][col[j]]);
+                if(j==4){
+                	var d = er[i][col[j]];
+                	var date = new Date(d).toDateString();
+                	console.log(date);
+                	tabCell.innerHTML = date;
+                }
+                else {
                 tabCell.innerHTML = er[i][col[j]];
+                }
             }
         }
 

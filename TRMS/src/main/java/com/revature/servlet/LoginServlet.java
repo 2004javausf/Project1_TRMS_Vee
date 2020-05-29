@@ -26,10 +26,8 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("in doGet of LoginServlet");
 		ObjectMapper mapper = new ObjectMapper();
 		RIMDAOImpl rdi = new RIMDAOImpl();
-	//	String uName = mapper.readValue(request.getParameter("eid"),String.class);
 		HttpSession session = request.getSession();
 		PrintWriter pw = response.getWriter();
-		//List<User> uList=new ArrayList<User>();
 		User user = new User();
 		String etJSON;
 		try {
@@ -84,7 +82,7 @@ public class LoginServlet extends HttpServlet {
 					request.getRequestDispatcher("home.html").forward(request, response);
 				} 
 				else {
-					request.getRequestDispatcher("home.html").include(request, response);	
+					request.getRequestDispatcher("home1.html").include(request, response);	
 				}
 				
 			}else {

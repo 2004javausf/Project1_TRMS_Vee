@@ -1,8 +1,9 @@
 package com.revature.beans;
-import java.sql.Date;
+import java.util.Date;
 
 public class ViewRim {
-	             
+	
+	private long rimID;
     private String empName;     
     private double rimCOST;            
     private String etName;  
@@ -20,9 +21,10 @@ public class ViewRim {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ViewRim(String empName, double rimCOST, String etName, Date etDate, String etLocation, String etDesc, String eGrade,
+	public ViewRim(long rimID,String empName, double rimCOST, String etName, Date etDate, String etLocation, String etDesc, String eGrade,
 			String rimJustify, int daysMissed, String rimSTATUS, String rimStatusBy) {
 		super();
+		this.rimID=rimID;
 		this.empName = empName;
 		this.rimCOST = rimCOST;
 		this.etName = etName;
@@ -34,6 +36,14 @@ public class ViewRim {
 		this.daysMissed = daysMissed;
 		this.rimSTATUS = rimSTATUS;
 		this.rimStatusBy = rimStatusBy;
+	}
+
+	public long getRimID() {
+		return rimID;
+	}
+
+	public void setRimID(long rimID) {
+		this.rimID = rimID;
 	}
 
 	public String getEmpName() {
@@ -126,12 +136,13 @@ public class ViewRim {
 
 	@Override
 	public String toString() {
-		return "ViewRim [empName=" + empName + ", rimCOST=" + rimCOST + ", etName=" + etName + ", etDate=" + etDate
-				+ ", etLocation=" + etLocation + ", etDesc=" + etDesc + ", rimJustify="
-				+ rimJustify + ", daysMissed=" + daysMissed + ", rimSTATUS=" + rimSTATUS + ", rimStatusBy="
-				+ rimStatusBy + "]";
+		return "ViewRim [rimID=" + rimID + ", empName=" + empName + ", rimCOST=" + rimCOST + ", etName=" + etName
+				+ ", etDate=" + etDate + ", etLocation=" + etLocation + ", etDesc=" + etDesc + ", eGrade=" + eGrade
+				+ ", rimJustify=" + rimJustify + ", daysMissed=" + daysMissed + ", rimSTATUS=" + rimSTATUS
+				+ ", rimStatusBy=" + rimStatusBy + "]";
 	}
-   	
+
+	
    	
 
 }

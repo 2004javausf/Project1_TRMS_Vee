@@ -2,7 +2,8 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: cover;
+	background-color: #D6EAF8;
+	
 	background-position: center;
 	font-family: sans-serif;
 }

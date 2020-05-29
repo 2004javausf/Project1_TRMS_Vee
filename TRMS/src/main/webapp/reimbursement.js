@@ -1,7 +1,17 @@
 var et;
 var gf;
+var fName;
+var lName;
+var eID;
 window.onload=function(){
     console.log("in load");
+    fName=localStorage.getItem("fName");
+    lName=localStorage.getItem("lName");
+    eID=localStorage.getItem("eID");
+    
+    document.getElementById("eID").value = eID;
+    document.getElementById("fName").value = fName;
+    document.getElementById("lName").value = lName;
     this.getET();
     this .getGF();
 
@@ -78,8 +88,8 @@ function jsonBuilder(){
     return json;
 }
 
-function postVG(){
-    console.log("in postVG");
+function postRim(){
+    console.log("in postRim");
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         console.log("in ORSC"+xhr.readyState);
@@ -88,6 +98,6 @@ function postVG(){
         }
     }
     xhr.open("POST","http://localhost:8080/TRMS/vg",true);
-    var payload=jsonBuilder()
-    xhr.send(payload);
+    var rimData=jsonBuilder()
+    xhr.send(rimData);
 }

@@ -1,205 +1,131 @@
 package com.revature.beans;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class Reimbursement {
 	
-	private int rimID;             
-    private int empID;     
-    private float rimCOST;            
-    private String rimSTATUS;    
-	private String rimStatusBy;
-	private String rimJustify; 
-	private int daysMissed; 
-	
-	private int etID;
-    private String etName;  
-    private Date etDate;  
-    private String etLocation;        
-    private String etDesc;   
-    private int etPercent;
-    
-    private int gfID;
-    private String gfName;
-    private String gfPassGrade;
-    
+	private long eID;
+	private String fName;
+	private String lName;
+	private double tFees;
+	private int eType;
+	private Date eDate;
+	private Time eTime;
+	private String location;
+	private String desc;
+	private int gFormat;
+	private String justifi;
+	private int mDays;
+	private double rprojected;
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Reimbursement(int rimID, int empID, float rimCOST, String rimSTATUS, String rimStatusBy, String rimJustify,
-			int daysMissed, int eventTypeID, String eventType, Date eventDATE, String eventLOCATION, String eventDesc,
-			int eventPercent, int gfID, String gfName, String gfPassGrade) {
+	public Reimbursement(long eID, String fName, String lName, double tFees, int eType, Date eDate, Time eTime,
+			String location, String desc, int gFormat, String justifi, int mDays, double rprojected) {
 		super();
-		this.rimID = rimID;
-		this.empID = empID;
-		this.rimCOST = rimCOST;
-		this.rimSTATUS = rimSTATUS;
-		this.rimStatusBy = rimStatusBy;
-		this.rimJustify = rimJustify;
-		this.daysMissed = daysMissed;
-		this.etID = eventTypeID;
-		this.etName = eventType;
-		this.etDate = eventDATE;
-		this.etLocation = eventLOCATION;
-		this.etDesc = eventDesc;
-		this.etPercent = eventPercent;
-		this.gfID = gfID;
-		this.gfName = gfName;
-		this.gfPassGrade = gfPassGrade;
+		this.eID = eID;
+		this.fName = fName;
+		this.lName = lName;
+		this.tFees = tFees;
+		this.eType = eType;
+		this.eDate = eDate;
+		this.eTime = eTime;
+		this.location = location;
+		this.desc = desc;
+		this.gFormat = gFormat;
+		this.justifi = justifi;
+		this.mDays = mDays;
+		this.rprojected = rprojected;
 	}
-
-	public Reimbursement(int gfID, String gfName, String gfPassGrade) {
-		super();
-		this.gfID = gfID;
-		this.gfName = gfName;
-		this.gfPassGrade = gfPassGrade;
+	public long geteID() {
+		return eID;
 	}
-
-	public Reimbursement(int eventTypeID, String eventType, int eventPercent) {
-		super();
-		this.etID = eventTypeID;
-		this.etName = eventType;
-		this.etPercent = eventPercent;
+	public void seteID(long eID) {
+		this.eID = eID;
 	}
-
-	public int getRimID() {
-		return rimID;
+	public String getfName() {
+		return fName;
 	}
-
-	public void setRimID(int rimID) {
-		this.rimID = rimID;
+	public void setfName(String fName) {
+		this.fName = fName;
 	}
-
-	public int getEmpID() {
-		return empID;
+	public String getlName() {
+		return lName;
 	}
-
-	public void setEmpID(int empID) {
-		this.empID = empID;
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
-
-	public float getRimCOST() {
-		return rimCOST;
+	public double gettFees() {
+		return tFees;
 	}
-
-	public void setRimCOST(float rimCOST) {
-		this.rimCOST = rimCOST;
+	public void settFees(double tFees) {
+		this.tFees = tFees;
 	}
-
-	public String getRimSTATUS() {
-		return rimSTATUS;
+	public int geteType() {
+		return eType;
 	}
-
-	public void setRimSTATUS(String rimSTATUS) {
-		this.rimSTATUS = rimSTATUS;
+	public void seteType(int eType) {
+		this.eType = eType;
 	}
-
-	public String getRimStatusBy() {
-		return rimStatusBy;
+	public Date geteDate() {
+		return eDate;
 	}
-
-	public void setRimStatusBy(String rimStatusBy) {
-		this.rimStatusBy = rimStatusBy;
+	public void seteDate(Date eDate) {
+		this.eDate = eDate;
 	}
-
-	public String getRimJustify() {
-		return rimJustify;
+	public Time geteTime() {
+		return eTime;
 	}
-
-	public void setRimJustify(String rimJustify) {
-		this.rimJustify = rimJustify;
+	public void seteTime(Time eTime) {
+		this.eTime = eTime;
 	}
-
-	public int getDaysMissed() {
-		return daysMissed;
+	public String getLocation() {
+		return location;
 	}
-
-	public void setDaysMissed(int daysMissed) {
-		this.daysMissed = daysMissed;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-
-	public int getEventTypeID() {
-		return etID;
+	public String getDesc() {
+		return desc;
 	}
-
-	public void setEventTypeID(int eventTypeID) {
-		this.etID = eventTypeID;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
-
-	public String getEventType() {
-		return etName;
+	public int getgFormat() {
+		return gFormat;
 	}
-
-	public void setEventType(String eventType) {
-		this.etName = eventType;
+	public void setgFormat(int gFormat) {
+		this.gFormat = gFormat;
 	}
-
-	public Date getEventDATE() {
-		return etDate;
+	public String getJustifi() {
+		return justifi;
 	}
-
-	public void setEventDATE(Date eventDATE) {
-		this.etDate = eventDATE;
+	public void setJustifi(String justifi) {
+		this.justifi = justifi;
 	}
-
-	public String getEventLOCATION() {
-		return etLocation;
+	public int getMDays() {
+		return mDays;
 	}
-
-	public void setEventLOCATION(String eventLOCATION) {
-		this.etLocation = eventLOCATION;
+	public void setMDays(int mDays) {
+		this.mDays = mDays;
 	}
-
-	public String getEventDesc() {
-		return etDesc;
+	public double getRprojected() {
+		return rprojected;
 	}
-
-	public void setEventDesc(String eventDesc) {
-		this.etDesc = eventDesc;
+	public void setRprojected(double rprojected) {
+		this.rprojected = rprojected;
 	}
-
-	public int getEventPercent() {
-		return etPercent;
-	}
-
-	public void setEventPercent(int eventPercent) {
-		this.etPercent = eventPercent;
+	@Override
+	public String toString() {
+		return "Reimbursement [eID=" + eID + ", fName=" + fName + ", lName=" + lName + ", tFees=" + tFees + ", eType="
+				+ eType + ", eDate=" + eDate + ", eTime=" + eTime + ", location=" + location + ", desc=" + desc
+				+ ", gFormat=" + gFormat + ", justifi=" + justifi + ", wDays=" + mDays + ", rprojected=" + rprojected
+				+ "]";
 	}
 	
-	public int getGfID() {
-		return gfID;
-	}
-
-	public void setGfID(int gfID) {
-		this.gfID = gfID;
-	}
-
-	public String getGfName() {
-		return gfName;
-	}
-
-	public void setGfName(String gfName) {
-		this.gfName = gfName;
-	}
-
-	public String getGfPassGrade() {
-		return gfPassGrade;
-	}
-
-	public void setGfPassGrade(String gfPassGrade) {
-		this.gfPassGrade = gfPassGrade;
-	}
-
 	
-	
-	
-	
-	
-    
-    
-    
     
       
 	

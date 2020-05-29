@@ -1,7 +1,11 @@
 var er;
+var user;
 var empID;
 window.onload=function(){
     console.log("in load");
+    user=localStorage.getItem("user");
+    console.log(user);
+    empID=user.empID;
     this.getER();
 
     // document.getElementById("eType").addEventListener("change",calculateRP,false);
@@ -16,7 +20,6 @@ function getER(){
     xhr.onreadystatechange=function(){
         console.log("in ORSC"+xhr.readyState);
         if(xhr.readyState==4 && xhr.status==200){
-            console.log(xhr.responseText);
             er=JSON.parse(xhr.responseText);
             console.log(er);
             loadER(er);
@@ -36,6 +39,7 @@ function loadER(er){
         }
     }
     console.log(col);
+    
     var table = document.createElement("table");
 
         // Create table header row using the extracted headers above.
@@ -54,7 +58,16 @@ function loadER(er){
 
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
+                console.log(er[i][col[j]]);
+                if(j==4){
+                	var d = er[i][col[j]];
+                	var date = new Date(d).toDateString();
+                	console.log(date);
+                	tabCell.innerHTML = date;
+                }
+                else {
                 tabCell.innerHTML = er[i][col[j]];
+                }
             }
         }
 
