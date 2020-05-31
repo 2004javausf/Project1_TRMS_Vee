@@ -1,9 +1,11 @@
 package com.revature.beans;
 
+import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
 
-public class Reimbursement {
+public class Reimbursement implements Serializable{
+	
+	private static final long serialVersionUID = -8568398774268561250L;
 	
 	private long eID;
 	private String fName;
@@ -11,18 +13,19 @@ public class Reimbursement {
 	private double tFees;
 	private int eType;
 	private Date eDate;
-	private Time eTime;
 	private String location;
 	private String desc;
 	private int gFormat;
 	private String justifi;
 	private int mDays;
 	private double rprojected;
+	
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reimbursement(long eID, String fName, String lName, double tFees, int eType, Date eDate, Time eTime,
+	
+	public Reimbursement(long eID, String fName, String lName, double tFees, int eType, Date eDate,
 			String location, String desc, int gFormat, String justifi, int mDays, double rprojected) {
 		super();
 		this.eID = eID;
@@ -31,7 +34,6 @@ public class Reimbursement {
 		this.tFees = tFees;
 		this.eType = eType;
 		this.eDate = eDate;
-		this.eTime = eTime;
 		this.location = location;
 		this.desc = desc;
 		this.gFormat = gFormat;
@@ -75,12 +77,6 @@ public class Reimbursement {
 	public void seteDate(Date eDate) {
 		this.eDate = eDate;
 	}
-	public Time geteTime() {
-		return eTime;
-	}
-	public void seteTime(Time eTime) {
-		this.eTime = eTime;
-	}
 	public String getLocation() {
 		return location;
 	}
@@ -120,7 +116,7 @@ public class Reimbursement {
 	@Override
 	public String toString() {
 		return "Reimbursement [eID=" + eID + ", fName=" + fName + ", lName=" + lName + ", tFees=" + tFees + ", eType="
-				+ eType + ", eDate=" + eDate + ", eTime=" + eTime + ", location=" + location + ", desc=" + desc
+				+ eType + ", eDate=" + eDate + ", location=" + location + ", desc=" + desc
 				+ ", gFormat=" + gFormat + ", justifi=" + justifi + ", wDays=" + mDays + ", rprojected=" + rprojected
 				+ "]";
 	}

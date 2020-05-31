@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Reimbursement;
 
@@ -24,16 +25,18 @@ public class ApplyRimServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in doPost");
+		System.out.println("in doPost of ApplyRimServlet");
 		Reimbursement rim=null;
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		//convert JSON to Java Object
 		rim=mapper.readValue(request.getInputStream(),Reimbursement.class);
+		System.out.println(rim);
 		RIMDAOImpl rdi = new RIMDAOImpl();
 		try {
 			rdi.insertRIM(rim);
 			PrintWriter pw = response.getWriter();
-			pw.write("<h3> Added Video Game Successfully!!!</h3>");
+			pw.write("<h3> Added Reimbursement Successfully!!!</h3>");
 			pw.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

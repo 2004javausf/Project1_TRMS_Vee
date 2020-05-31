@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.beans.VideoGame;
 import com.revature.dao.RIMDAOImpl;
-import com.revature.dao.VGDAOImpl;
 
 
 public class GradeServlet extends HttpServlet {
@@ -39,26 +37,6 @@ public class GradeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		pw.flush();
-	}
-
-	//get a json from our ajax and save it to database
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in doPost");
-		VideoGame vg=null;
-		ObjectMapper mapper = new ObjectMapper();
-		//convert JSON to Java Object
-		vg=mapper.readValue(request.getInputStream(),VideoGame.class);
-		VGDAOImpl vgdi = new VGDAOImpl();
-		try {
-			vgdi.insertVG(vg);
-			PrintWriter pw = response.getWriter();
-			pw.write("<h3> Added Video Game Successfully!!!</h3>");
-			pw.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	}
 
 }

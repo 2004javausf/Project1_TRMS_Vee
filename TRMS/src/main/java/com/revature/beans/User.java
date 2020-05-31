@@ -9,10 +9,12 @@ public class User implements Serializable{
 	private long empID;
 	private String fName;
 	private String lName;
+	private String email;
 	private String uName;
 	private String uPassword;
 	private String empTitle;
 	private String empDept;
+	private double balance;
 	
 	
 	public User() {
@@ -20,18 +22,51 @@ public class User implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(long empID, String fName, String lName, String uName, String uPassword, String empTitle, String empDept) {
+	public User(long empID, String fName, String lName, String email, String uName, String uPassword, String empTitle,
+			String empDept, double balance) {
 		super();
 		this.empID = empID;
 		this.fName = fName;
 		this.lName = lName;
+		this.email = email;
 		this.uName = uName;
 		this.uPassword = uPassword;
 		this.empTitle = empTitle;
 		this.empDept = empDept;
+		this.balance = balance;
 	}
 
+	public long getEmpID() {
+		return empID;
+	}
+	
+	public void setEmpID(long empID) {
+		this.empID = empID;
+	}
+	
+	public String getfName() {
+		return fName;
+	}
+	
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+	
+	public String getlName() {
+		return lName;
+	}
+	
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getuName() {
 		return uName;
@@ -49,35 +84,28 @@ public class User implements Serializable{
 		this.uPassword = uPassword;
 	}
 
-	public long getEmpID() {
-		return empID;
-	}
-	public void setEmpID(long empID) {
-		this.empID = empID;
-	}
-	public String getfName() {
-		return fName;
-	}
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-	public String getlName() {
-		return lName;
-	}
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
 	public String getEmpTitle() {
 		return empTitle;
 	}
+	
 	public void setEmpTitle(String empTitle) {
 		this.empTitle = empTitle;
 	}
+	
 	public String getEmpDept() {
 		return empDept;
 	}
+	
 	public void setEmpDept(String empDept) {
 		this.empDept = empDept;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 	@Override

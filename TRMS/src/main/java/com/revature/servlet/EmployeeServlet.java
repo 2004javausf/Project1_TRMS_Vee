@@ -9,34 +9,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dao.RIMDAOImpl;
+import com.revature.beans.Employee;
+import com.revature.dao.EMPDAOImpl;
 
 
-public class EventServlet extends HttpServlet {
+public class EmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in doGet of EventServlet");
+		//TO DO Stuff
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("in doPost of EmployeeServlet");
+		Employee emp=null;
 		ObjectMapper mapper = new ObjectMapper();
-		RIMDAOImpl rdi = new RIMDAOImpl();
-		PrintWriter pw = response.getWriter();
-		String etJSON;
+		//convert JSON to Java Object
+		emp=mapper.readValue(request.getInputStream(),Employee.class);
+		EMPDAOImpl edi = new EMPDAOImpl();
 		try {
-			etJSON=mapper.writeValueAsString(rdi.getEType());
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			pw.print(etJSON);
-			
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			edi.insertEmployee(emp);
+			PrintWriter pw = response.getWriter();
+			pw.write("<h3> Added Employee Successfully!!!</h3>");
+			pw.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		pw.flush();
 	}
 
 }

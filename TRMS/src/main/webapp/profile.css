@@ -1,0 +1,76 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+body{
+	background-color:#F3DA91
+	margin-top: 50px;
+	width:100%; 
+	height:100%;
+
+}
+/*end reset*/
+/*=============================
+ * start-wrap
+ ============================*/
+.wrap{
+	
+	width:95%;
+	margin:0 auto;
+}
+.wrap1{
+	width:100%;
+	margin-left: 35px;
+}
+.wrap2{
+	background-color:#fff;
+	width:100%;
+	margin:0 auto;
+}
+.wrap3{
+	width:60%;
+	margin:0 auto;
+}
+/*=============================
+ * head class
+ ============================*/
+.head { 
+	color: #FAB900;
+	text-shadow: -3px 0 #B50000, 0 3px #B50000, 3px 0 #B50000, 0 -3px #B50000;
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 4em;
+	text-align: top; 
+	height: 80px;
+	width:90%;
+	text-align:left;
+	margin-top: 25px;
+}
+.head h4 {
+	color: #B50000;
+	text-shadow: none;
+	font-family: Comic Sans MS, sans-serif;
+	font-size: .36em;
+	text-align: top; 
+	margin-top: 15px;
+	margin-bottom: 0px;
+	margin-left: 20px;
+	text-align: left;
+	text-align: justify;
+}

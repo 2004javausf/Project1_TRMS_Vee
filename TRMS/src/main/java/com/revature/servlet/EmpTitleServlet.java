@@ -13,18 +13,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.RIMDAOImpl;
 
-
-public class EventServlet extends HttpServlet {
+public class EmpTitleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in doGet of EventServlet");
+		System.out.println("in doGet of EmpTitleServlet");
 		ObjectMapper mapper = new ObjectMapper();
 		RIMDAOImpl rdi = new RIMDAOImpl();
 		PrintWriter pw = response.getWriter();
 		String etJSON;
 		try {
-			etJSON=mapper.writeValueAsString(rdi.getEType());
+			etJSON=mapper.writeValueAsString(rdi.getEmpTitle());
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			pw.print(etJSON);

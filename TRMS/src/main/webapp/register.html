@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Registration</title>
+<link rel="stylesheet" href="register.css">
+</head>
+<body>
+	<div class = "heading1">
+		<h1> EMPLOYEE ACCOUNT REGISTRATION FORM</h1>
+		<div class = "form">
+            <form enctype="application/json" method="POST" id="registerForm" action="index.html">
+    
+                <p>First Name :</p> <input type="text" id="fName" name="fName" onkeyup="this.value = this.value.toUpperCase();">
+                <br><br>
+                <p>Last Name :</p> <input type="text" id="lName" name="lName" onkeyup="this.value = this.value.toUpperCase();">
+                <br><br>
+                <p>Email :</p> <input type="text" id="email" name="email" onkeyup="this.value = this.value.toUpperCase();">
+                <br><br>
+                <p>Username :</p> <input type="text" name="desc" id="username" onkeyup="this.value = this.value.toUpperCase();">
+                <br><br>
+                <p>Password :</p> <input type="password" name="password" id="password">
+                <br><br>
+                <p>Re-type Password :</p> <input type="password" name="repassword" id="repassword">
+                <br><br>
+                <p>Title :</p> <select name="eTitle" id="Title">
+                    <option value=0>SELECT</option>
+                  </select>
+                <br><br>
+                <p>Department :</p> <select name="eDept" id="Dept">
+                    <option value=0>SELECT</option>
+                  </select>
+                <br><br>
+               
+                <input type="submit" value="Register" id="eFormSubmit"><br><br>
+                <p>&emsp;<a href ="index.html" id="cancel">Cancel</a>&emsp;
+				<a href = "register.html" id="clear">Clear</a></p>
+            </form>
+        </div>
+	</div>
+	<script type="text/javascript" src="register.js"></script>
+</body>
+</html>

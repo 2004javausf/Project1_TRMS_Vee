@@ -5,7 +5,7 @@ window.onload=function(){
     console.log("in load");
     user=localStorage.getItem("user");
     console.log(user);
-    empID=user.empID;
+    empID=localStorage.getItem("eID");
     this.getER();
 
     // document.getElementById("eType").addEventListener("change",calculateRP,false);
@@ -14,8 +14,6 @@ window.onload=function(){
 
 function getER(){
     console.log("in getGF");
-    //let vgid=document.getElementById("vgIDInput").value;
-    empID = 1;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         console.log("in ORSC"+xhr.readyState);

@@ -15,6 +15,7 @@ public class ViewRim {
 	private int daysMissed; 
     private String rimSTATUS;    
    	private String rimStatusBy;
+   	private String rimNotes;
    	
 	public ViewRim() {
 		super();
@@ -22,7 +23,7 @@ public class ViewRim {
 	}
 
 	public ViewRim(long rimID,String empName, double rimCOST, String etName, Date etDate, String etLocation, String etDesc, String eGrade,
-			String rimJustify, int daysMissed, String rimSTATUS, String rimStatusBy) {
+			String rimJustify, int daysMissed, String rimSTATUS, String rimStatusBy, String rimNotes) {
 		super();
 		this.rimID=rimID;
 		this.empName = empName;
@@ -36,6 +37,7 @@ public class ViewRim {
 		this.daysMissed = daysMissed;
 		this.rimSTATUS = rimSTATUS;
 		this.rimStatusBy = rimStatusBy;
+		this.rimNotes = rimNotes;
 	}
 
 	public long getRimID() {
@@ -133,16 +135,21 @@ public class ViewRim {
 	public void setRimStatusBy(String rimStatusBy) {
 		this.rimStatusBy = rimStatusBy;
 	}
+	
+	public String getRimNotes() {
+		return rimNotes;
+	}
+
+	public void setRimNotes(String rimNotes) {
+		this.rimNotes = rimNotes;
+	}
 
 	@Override
 	public String toString() {
 		return "ViewRim [rimID=" + rimID + ", empName=" + empName + ", rimCOST=" + rimCOST + ", etName=" + etName
 				+ ", etDate=" + etDate + ", etLocation=" + etLocation + ", etDesc=" + etDesc + ", eGrade=" + eGrade
 				+ ", rimJustify=" + rimJustify + ", daysMissed=" + daysMissed + ", rimSTATUS=" + rimSTATUS
-				+ ", rimStatusBy=" + rimStatusBy + "]";
-	}
-
-	
-   	
+				+ ", rimStatusBy=" + rimStatusBy + ", rimNotes=" + rimNotes + "]";
+	} 	
 
 }

@@ -1,7 +1,5 @@
 package com.revature.beans;
 
-import java.sql.Date;
-
 public class EventType {
 	private int etID;
     private String etName;  
