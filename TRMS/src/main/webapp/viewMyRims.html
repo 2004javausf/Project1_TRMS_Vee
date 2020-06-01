@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link href="reimbursement.css" rel="stylesheet" type="text/css"  media="all" />
 <script type="text/javascript" src="viewMyRims.js"></script>
 <style>
 	th, td, p, input, h3 {
@@ -22,7 +22,7 @@
 <body>
 	<div id='showData' name='datatable'></div>
     <br><br><br>
-    <div id='selectedRim'>
+    <div id='selectedRim' style="display:none">
     	<form method="POST" id="rimUpdateForm" action="updategrade">
 	    	 <input type="hidden" id="rimID" name="rimID">
 	         Name : <h4 id="EName" name="EName"></h4>

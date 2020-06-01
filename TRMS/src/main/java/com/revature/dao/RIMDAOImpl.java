@@ -63,6 +63,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		call.setDouble(10, prim);
 		
 		call.execute();
+		conn.close();
 	}
 	
 	//Update Grades by employee
@@ -93,6 +94,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			call.setString(4,notes);
 		
 			call.execute();
+			conn.close();
 		}
 	
 	//get all Employee Title
@@ -106,6 +108,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			et=new EmpTitle(rs.getInt(1),rs.getString(2));
 			etList.add(et);
 		}
+		conn.close();
 		return etList;
 	}
 	
@@ -120,6 +123,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			d=new Department(rs.getInt(1),rs.getString(2));
 			dList.add(d);
 		}
+		conn.close();
 		return dList;
 	}
 	
@@ -134,6 +138,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			et=new EventType(rs.getInt(1),rs.getString(2),rs.getInt(3));
 			etList.add(et);
 		}
+		conn.close();
 		return etList;
 	}
 	
@@ -148,6 +153,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			gf=new GradeFormat(rs.getInt(1),rs.getString(2),rs.getString(3));
 			gfList.add(gf);
 		}
+		conn.close();
 		return gfList;
 	}
 	
@@ -218,6 +224,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			System.out.println(vr);
 		}
 		
+		conn.close();
 		return vrList;
 		
 	}
@@ -248,6 +255,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			System.out.println(vr);
 		}
 		
+		conn.close();
 		return vrList;
 		
 	}
@@ -275,6 +283,7 @@ public static ConnFactory banana = ConnFactory.getInstance();
 			System.out.println(vr);
 		}
 		
+		conn.close();
 		return vr;
 		
 	}	

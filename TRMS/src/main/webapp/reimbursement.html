@@ -3,16 +3,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>TUITION REIMBURSEMENT</title>
+<link href="reimbursement.css" rel="stylesheet" type="text/css"  media="all" />
 </head>
 <body>
 	<div>
 		<h1> TUITION REIMBURSEMENT REQUEST FORM</h1>
-		<div>
+		<div class="form">
             <form enctype="application/json" method="POST" id="requestForm" action="home.html" onSubmit="return checkForm()">
     
                 <input type="hidden" id="eID" name="eID">
                 First Name : <input type="text" id="fName" name="fName" readonly>
-                <br><br>
+                <br> <br>
                 Last Name : <input type="text" id="lName" name="lName" readonly>
                 <br><br>
                 Cost : <input type="text" name="tFees" id="tFees" placeholder="Reimbursement Amount">
@@ -21,23 +22,18 @@
                     <option value=0>SELECT</option>
                   </select>
                 <br><br>
-                Event Date: <input type="datetime-local" name="eDate" id="eDate">
+                Event Date : <input type="datetime-local" name="eDate" id="eDate">
                 <br><br>
                 Location : <input type="text" id="location" name="location" onkeyup="this.value = this.value.toUpperCase();">
                 <br><br>
-                Description: <input type="text" name="desc" id="desc">
+                Description : <input type="text" name="desc" id="desc">
                 <br><br>
-                Grading Format : <select name="gFormat" id="gFormat">
+                Grading Format : 
+                <select name="gFormat" id="gFormat">
                     <option value=0>SELECT</option>
                   </select>
                 <br><br>
-                Justification : <input type="text"
-                                        cols="40" 
-                                        rows="5" 
-                                        style="width:200px; height:50px;" 
-                                        name="justifi" 
-                                        id="justifi"
-                                        value="" >
+                Justification : <input type="text" name="justifi" id="justifi" value="" >
                 <br><br>
                 Missed Work Days : <input type="text" name="mDays">
                 <br><br>

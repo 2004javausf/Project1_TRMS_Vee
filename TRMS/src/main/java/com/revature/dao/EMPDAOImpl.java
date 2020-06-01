@@ -33,9 +33,10 @@ public class EMPDAOImpl {
 		ps.setDouble(8, bal);
 		
 		ps.executeUpdate();
+		conn.close();
 	}
 	
-	//get users info to verify login
+		//get users info to verify login
 		public List<User> getLogInUser() throws SQLException {
 			List<User> uList=new ArrayList<User>();
 			User user=null;
@@ -59,7 +60,7 @@ public class EMPDAOImpl {
 				user=new User(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getDouble(9));
 				uList.add(user);
 			}
-			
+			conn.close();
 			return uList;
 		}
 		

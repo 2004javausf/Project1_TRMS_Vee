@@ -103,6 +103,11 @@ function getRow(oButton) {
 }
 
 function loadVR(vr){
+    var x = document.getElementById("selectedRim");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } 
+    
     document.getElementById("rimID").value=vr.rimID;
     document.getElementById("EName").innerHTML=vr.empName;
    // document.getElementById("tFees").innerHTML=vr.rimCost;
