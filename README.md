@@ -1,6 +1,6 @@
 # Project 1 -Tuition Reimbursement Management System (TRMS) 
 
-## Description
+	## Description
 	Tuition Reimbursement Management System (TRMS) by Veenay Patel
 
 	## TRMS OVERVIEW
@@ -9,7 +9,7 @@
 		The current system relies solely on email communication, requiring manual lookups of available funds and is error-prone due to inbox clutter and incorrect routing of tasks.  
 		Furthermore, there is no way to record and report on reimbursements awarded, and so the company has no way to identify highly-invested courses that could be developed to be offered in-house.
 
-	### Business Rules
+	###### Business Rules
 		Each employee is allowed to claim up to $1000 in tuition reimbursement a year. The amount available to an employee is reset on the new year.  
 		Event types have different standard reimbursement coverage: University Courses 80%, Seminars 60%, Certification Preparation Classes 75%, Certification 100%, Technical Training 90%, Other 30%.  
 		After a BenCo has approved a reimbursement, the reimbursement is pending until a passing grade or presentation over the event is provided.  
@@ -24,7 +24,7 @@
 		The employee can optionally include: event-related attachments of pdf, png, jpeg, txt, or doc file type, attachments of approvals already provided of .msg (Outlook Email File) file type and type of approval, work time that will be missed.  
 		The projected reimbursement should be provided as a read-only field.
 		
-	### Business Rules
+	###### Business Rules
 		Grading formats are pulled from a reference table.  
 		Certain grading formats require the employee to perform a presentation to management after the event’s completion and prior to awarded reimbursement.  
 		A passing grade is needed for reimbursement otherwise.  Employees must provide the passing grade cutoff for the course, or choose to use a default passing grade if unknown.  
@@ -35,7 +35,7 @@
 		The direct supervisor must provide approval for Tuition Reimbursement.  
 		The Direct Supervisor can request additional information from the employee before approval. 
 		
-	### Business Rules
+	###### Business Rules
 		If denied, the Direct Supervisor must provide a reason.  
 		If the direct supervisor is also a department head, then the department head approval is skipped.  
 		If the direct supervisor does not complete this task in a timely manner, the request is auto-approved. 
@@ -44,7 +44,7 @@
 		The department head must provide approval for Tuition Reimbursement.  
 		The Department Head can request additional information from the employee or direct supervisor before approval.
 		
-	### Business Rules
+	###### Business Rules
 		If the Department Head does not complete this task in a timely manner, the request is auto-approved.
 
 	## Benefits Coordinator Approval
@@ -53,7 +53,7 @@
 		The BenCo can request additional information from the employee, direct supervisor, or department head before approval. 
 		The BenCo has the ability to alter the reimbursement amount.
 
-	### Business Rules
+	###### Business Rules
 		If the BenCo changes the reimbursement amount, the Employee should be notified and given the option to cancel the request.  
 		If the BenCo does not approve in a timely matter, an escalation email should be sent to the BenCo’s direct supervisor.  
 		The BenCo is allowed to award an amount larger than the amount available for the employee.  
@@ -65,21 +65,21 @@
 		After upload of a presentation, the direct manager must confirm that the presentation was satisfactory and presented to the appropriate parties.  
 		Upon confirmation, the amount is awarded to the requestor.
 		
-	### Business Rules
+	###### Business Rules
 		Only interested parties should be able to access the grades/presentations.  
 		Interested parties include the requestor and approvers.  
 		
 	
 	## USER STORIES
 	
-	### REGULAR EMPLOYEES
+	###### REGULAR EMPLOYEES
 		- Apply for reimbursement through html form one week prior to event
 		- Login to system through other form
 		- able to create normal user accounts through another form
 		- message other users
 		- Ability to cancel requests only when they notify amount is change
 		- After event completion, employee should attach grade or presentation as appropriate
-	### DIRECT SUPERVISOR
+	###### DIRECT SUPERVISOR
 		- Must provide approval for Tuition Reimbursement. 
 		- able to message other users ( use this for more info requests )
 		- can apply for reimbursement as well
@@ -87,20 +87,20 @@
 		- If supervisor is a department head, that approval step is skipped
 		- After two weeks, request is auto approved and goes to Deparment Head
 
-	### DEPARTMENT HEAD 
+	###### DEPARTMENT HEAD 
 		- Must provide approval for Tuition Reimbursement
 		- able to message other users ( use this for more info requests from employees and supervisors )
 		- If Department head does not complete this task in a timely manner, request is auto approved to a BenCo
 		- Must provide reason for denying approval
 
-	### Benifits Coordinator
+	###### Benifits Coordinator
 		- Must provide approval for Tuition Reimbursement
 		- Can change the reimbursement amount ( notify employee and give option to cancel)
 		- If BenCo does not approve, escalation email is sent to direct supervisor
 		- Can award amount larger than amount available to employee ( Must provide reason and mark the reimbursement as exceeding available funds for reporting purposes)
 		- Confirm uploaded grade is passing when grade is submitted
 
-	### System
+	###### System
 		- only give reimbursment after it approved
 		- calculate reimbursement available balance
 		- reset reimbursment on 1st of jan (new year)
