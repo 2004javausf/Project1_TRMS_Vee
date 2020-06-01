@@ -19,9 +19,29 @@
 </style>
 </head>
 <body>
-	<p id='showData'></p>
-    
-    <p id='msg'></p>
+	<div id='showData'></div>
+    <br><br><br>
+    <div id='selectedRim'>
+    	<form method="POST" id="rimUpdateStatus" action="updatestatus">
+	    	 <input type="hidden" id="rimID" name="rimID">
+	    	  Name : <h4 id="EName" name="EName"></h4>
+	         Type of Event : <h4 name="eType" id="eType"></h4>
+	         Description : <h4 name="eDesc" id="eDesc" ></h4>
+	         Event Grade : <h4 name="eGrade" id="eGrade"></h4>
+	         <br><br>
+	         Status : <select name="eStatus" id="eStatus">
+                    <option value='PENDING'>PENDING</option>
+                    <option value='APPROVED'>APPROVED</option>
+                    <option value='DENIED'>DENIED</option>
+                  </select>
+	         <br><br>
+	   		 <input type="hidden" name="eStatusBy" id="eStatusBY">
+	         Notes/Reason : <input type="text" name="eNotes" id="eNotes">
+	         <br><br>
+	         
+	         <input type="submit" value="Update" id="rimUpdate">
+        </form>
+    </div>
 	<script type="text/javascript" src="viewAllRim.js"></script>
 </body>
 </html>

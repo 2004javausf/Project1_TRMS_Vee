@@ -65,6 +65,36 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		call.execute();
 	}
 	
+	//Update Grades by employee
+	public void updateGrade(String id,String eGrade) throws SQLException {
+		Connection conn = banana.getConnection();
+		
+		String sql = "{ call UPDATE_GRADE(?,?)";
+		
+		CallableStatement call = conn.prepareCall(sql);
+		
+		call.setLong(1, Long.parseLong(id));
+		call.setString(2,eGrade);
+	
+		call.execute();
+	}
+	
+	//Update Status of Reimbursement
+		public void updateStatus(String id,String status,String statusby,String notes) throws SQLException {
+			Connection conn = banana.getConnection();
+			
+			String sql = "{ call UPDATE_STATUS(?,?,?,?)";
+			
+			CallableStatement call = conn.prepareCall(sql);
+			
+			call.setLong(1, Long.parseLong(id));
+			call.setString(2,status);
+			call.setString(3,statusby);
+			call.setString(4,notes);
+		
+			call.execute();
+		}
+	
 	//get all Employee Title
 	public  List<EmpTitle> getEmpTitle() throws SQLException {
 		EmpTitle et = null;
@@ -122,13 +152,54 @@ public static ConnFactory banana = ConnFactory.getInstance();
 	}
 	
 	//get all Reimbursement to view
-	public List<ViewRim> getViewAllRim() throws SQLException{
+	public List<ViewRim> getViewAllRim(long eID,String eTitle,String eDept) throws SQLException{
 		ViewRim vr = null;
 	
 		
 		List<ViewRim> vrList = new ArrayList<ViewRim>();
 		Connection conn = banana.getConnection();
 		Statement stmt=conn.createStatement();
+		String sql;
+		String dh="Department Head";
+		String ds="Direct Supervisor";
+		String bc="Benifits Coordinator";
+		String emp="Associate";
+		String s="Sales";
+		String hr="Human Resources";
+		String pr="Production";
+		
+//		if(eDept.equalsIgnoreCase(hr) && eTitle.equalsIgnoreCase(dh)) {
+//			
+//			sql="SELECT REIMBURSEMENT.REIMBURSEMENT_ID,EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
+//					"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
+//					"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
+//					"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY,REIMBURSEMENT.REIMBURSEMENT_NOTES FROM REIMBURSEMENT " + 
+//					"JOIN EMPLOYEE " + 
+//					"ON REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID=EMPLOYEE.EMPLOYEE_ID " + 
+//					"JOIN EVENT " + 
+//					"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
+//					"JOIN EVENT_TYPE " + 
+//					"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " + 
+//					"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID";
+//			
+//		} else if(eDept.equalsIgnoreCase(hr) && eTitle.equalsIgnoreCase(ds)) {
+//			
+//			sql="SELECT REIMBURSEMENT.REIMBURSEMENT_ID,EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
+//					"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
+//					"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
+//					"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY,REIMBURSEMENT.REIMBURSEMENT_NOTES FROM REIMBURSEMENT " + 
+//					"JOIN EMPLOYEE " + 
+//					"ON REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID=EMPLOYEE.EMPLOYEE_ID " + 
+//					"JOIN EVENT " + 
+//					"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
+//					"JOIN EVENT_TYPE " + 
+//					"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " + 
+//					"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID";
+//			
+//		}
+			
+		
+		
 		ResultSet rs=stmt.executeQuery("SELECT REIMBURSEMENT.REIMBURSEMENT_ID,EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
 				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
 				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
@@ -139,7 +210,8 @@ public static ConnFactory banana = ConnFactory.getInstance();
 				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
 				"JOIN EVENT_TYPE " + 
 				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " + 
-				"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
+				"WHERE REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID!="+eID+
+				" ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
 		while(rs.next()) {		
 			vr=new ViewRim(rs.getLong(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getString(12),rs.getString(13));
 			vrList.add(vr);
@@ -179,6 +251,34 @@ public static ConnFactory banana = ConnFactory.getInstance();
 		return vrList;
 		
 	}
+	
+	//get a specific Reimbursement info
+	public ViewRim getRim(long rID) throws SQLException{
+		ViewRim vr = null;
+
+		Connection conn = banana.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs=stmt.executeQuery("SELECT REIMBURSEMENT.REIMBURSEMENT_ID,EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
+				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
+				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
+				"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY,REIMBURSEMENT.REIMBURSEMENT_NOTES FROM REIMBURSEMENT " + 
+				"JOIN EMPLOYEE " + 
+				"ON REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID=EMPLOYEE.EMPLOYEE_ID " + 
+				"JOIN EVENT " + 
+				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
+				"JOIN EVENT_TYPE " + 
+				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " +
+				"WHERE REIMBURSEMENT.REIMBURSEMENT_ID= "+rID);
+		
+		while(rs.next()) {		
+			vr=new ViewRim(rs.getLong(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getString(12),rs.getString(13));
+			System.out.println(vr);
+		}
+		
+		return vr;
+		
+	}	
+	
 	
 	
 }

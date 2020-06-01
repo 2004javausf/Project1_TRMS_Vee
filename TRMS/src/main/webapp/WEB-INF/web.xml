@@ -119,4 +119,34 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewRimServlet</display-name>
+    <servlet-name>ViewRimServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewRimServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewRimServlet</servlet-name>
+    <url-pattern>/viewrim</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateGradeServlet</display-name>
+    <servlet-name>UpdateGradeServlet</servlet-name>
+    <servlet-class>com.revature.servlet.UpdateGradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateGradeServlet</servlet-name>
+    <url-pattern>/updategrade</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateStatusServer</display-name>
+    <servlet-name>UpdateStatusServer</servlet-name>
+    <servlet-class>com.revature.servlet.UpdateStatusServer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateStatusServer</servlet-name>
+    <url-pattern>/updatestatus</url-pattern>
+  </servlet-mapping>
 </web-app>

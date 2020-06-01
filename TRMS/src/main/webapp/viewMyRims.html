@@ -3,6 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript" src="viewMyRims.js"></script>
 <style>
 	th, td, p, input, h3 {
 		font:15px 'Segoe UI';
@@ -19,9 +20,23 @@
 </style>
 </head>
 <body>
-	<p id='showData'></p>
-    
-    <p id='msg'></p>
-	<script type="text/javascript" src="viewMyRims.js"></script>
+	<div id='showData' name='datatable'></div>
+    <br><br><br>
+    <div id='selectedRim'>
+    	<form method="POST" id="rimUpdateForm" action="updategrade">
+	    	 <input type="hidden" id="rimID" name="rimID">
+	         Name : <h4 id="EName" name="EName"></h4>
+	         <br><br>
+	         Type of Event : <h4 name="eType" id="eType"></h4>
+	         <br><br>
+	         Description : <h4 name="eDesc" id="eDesc" ></h4>
+	         <br><br>
+	         Event Grade : <input type="text" name="eGrade" id="eGrade">
+	         <br><br>
+	   
+	         <input type="submit" value="Update Reimbursement" id="rimUpdate">
+        </form>
+    </div>
+	
 </body>
 </html>

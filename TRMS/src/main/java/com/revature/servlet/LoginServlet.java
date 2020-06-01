@@ -20,6 +20,7 @@ import com.revature.dao.EMPDAOImpl;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static HttpSession session;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("in doGet of LoginServlet");
@@ -73,7 +74,7 @@ public class LoginServlet extends HttpServlet {
 			//String name = user.getfName() + " " + user.getlName();
 			if(l==true) {
 				//pw.print("Welcome, "+name);
-				HttpSession session=request.getSession();
+				session=request.getSession();
 	            session.setAttribute("user",user); 
 				
 //				if(user.getEmpTitle().equalsIgnoreCase("Associate")) {

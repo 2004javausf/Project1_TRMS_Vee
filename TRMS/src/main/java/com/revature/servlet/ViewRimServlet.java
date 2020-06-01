@@ -11,28 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.beans.User;
 import com.revature.dao.RIMDAOImpl;
 
-public class ViewAllRimServlet extends HttpServlet {
+public class ViewRimServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in doGet of viewAllRimServlet");
+		System.out.println("in doGet of viewMyRimServlet");
 		ObjectMapper mapper = new ObjectMapper();
 		RIMDAOImpl rdi = new RIMDAOImpl();
+		long id = mapper.readValue(request.getParameter("rid"),Long.class);
 		PrintWriter pw = response.getWriter();
 		String etJSON;
-		User user = new User();
-		user = (User) LoginServlet.session.getAttribute("user");
-		System.out.println(user);
-		
-		long eID = user.getEmpID();
-		String eTitle = user.getEmpTitle();
-		String eDept = user.getEmpDept();
-		
 		try {
-			etJSON=mapper.writeValueAsString(rdi.getViewAllRim(eID,eTitle,eDept));
+			etJSON=mapper.writeValueAsString(rdi.getRim(id));
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			pw.print(etJSON);
@@ -46,10 +39,7 @@ public class ViewAllRimServlet extends HttpServlet {
 		}
 		pw.flush();
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
+		
+
+
